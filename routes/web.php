@@ -7,12 +7,9 @@ use App\Http\Controllers\PersonalDataController;
 
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('bps_biometric');
 });
 
-Route::get('/mydtr', function () {
-    return view('pages.mydtr');
-});
 
 Route::get('/position', function () {
     return view('pages.position');
@@ -24,48 +21,81 @@ Route::post('/position', [PositionEntry::class, 'store'])->name('position-store'
 
 Route::get('/person', [PersonalDataController::class, 'getAllpersonalData']);
 
-Route::post('/new_person', [PersonalDataController::class, 'createNewpersonalData']);
+Route::post('/new_person', [PersonalDataController::class, 'createNewpersonalData'])->name('newFerson');
 
 
 
-Route::get('/dtr', function () {
+Route::get('/bps-biometric', function () {
     return view('dailytimerecord');
-})->name('dtr');
+})->name('bps-biometric');
 
 
 // portal
-Route::get('/portal', function () {
-    return view('pages.portal.admin_portal');
-});
+Route::get('/My-Portal', function () {
+    return view('bps_portal');
+})->name('My Portal');
 
 // main routes
 
 Route::get('/portal/admin', function () {
-    return view('pages.portal.admin_dashboard');
+    return view('portal.admin_dashboard');
 });
-Route::get('/portal/hrms', function () {
-    return view('pages.portal.admin_hrms');
-});
+
+
+
+Route::get('/employee', function () {
+    return view('portal.employee.dashboard_emp');
+})->name('employee');
+
+
 Route::get('/portal/accounting', function () {
-    return view('pages.portal.admin_accounting');
+    return view('portal.admin_accounting');
 });
 
-// pages
-Route::get('/portal/hrms/jobs', function () {
-    return view('pages.portal.hrms.job_postings');
+
+
+ // ***** Route Group for HRMS System View *****
+Route::group(['prefix' => 'hrms'], function() {
+   
+    Route::get('dashboard_hrms', function () { return view('portal.hrms.dashboard_hrms'); })->name('Dashboard-hrms');
+
+    // Route for job application page
+    Route::get('job-application', function () {return view('portal.hrms.job_application'); })->name('jobApplication');
+
+    // Route for job postings page
+    Route::get('job-postings', function () {return view('portal.hrms.job_postings'); })->name('jobPosting');
+
+    // Route for new employee page
+    Route::get('new-employee', function () {return view('portal.hrms.new_employee');})->name('newEmployee');
+
+    // Route for new person page
+    Route::get('new-person', function () {return view('portal.hrms.new_person');})->name('newPerson');
 });
 
-Route::get('/portal/hrms/job_applications', function () {
-    return view('pages.portal.hrms.job_application');
+
+   // ***** Route Group for Employee System View *****
+Route::group(['prefix' => 'employee'], function() {
+    // Route for Dashboard
+    Route::get('dashboard', function () {return view('portal.employee.dashboard_emp'); })->name('employeeDashboard');
+    // Route for Dtr Page
+    Route::get('dtr', function () {return view('portal.employee.mydtr'); })->name('DTR');
+    // Route for DTR Print Page
+    Route::get('Print_dtr', function () {return view('portal.employee.dtr_print'); })->name('print_dtr');
 });
 
-Route::get('/portal/hrms/new_employee', function () {
-    return view('pages.portal.hrms.new_employee');
-})->name('new_employee');
 
-Route::get('/portal/hrms/new_person', function () {
-    return view('pages.portal.hrms.new_person');
-})->name('new_person_view');
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

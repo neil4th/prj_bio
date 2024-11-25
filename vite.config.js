@@ -1,28 +1,31 @@
-import {
-    defineConfig
-} from 'vite';
+import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import {
-    createHtmlPlugin
-} from 'vite-plugin-html';
-import {
-    viteStaticCopy
-} from 'vite-plugin-static-copy';
+import { createHtmlPlugin } from 'vite-plugin-html';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
+import browserSync from 'browser-sync';
+import path from 'path';
 
 export default defineConfig({
     plugins: [
+        // Laravel Vite Plugin
         laravel({
             input: [
-                'resources/js/app.js',
-                'resources/sass/app.scss',
+                'resources/js/app.js', // Main JavaScript entry point
+                'resources/sass/app.scss', // Main SCSS/CSS entry point
             ],
-            refresh: true,
+            refresh: true,  // Enable automatic refresh on asset changes
         }),
+
+        // HTML Plugin to minify HTML files during build
         createHtmlPlugin({
             minify: true,
         }),
+
+        // Static file copy plugin to copy external libraries to public directory
         viteStaticCopy({
-            targets: [{
+            targets: [
+                // Copy external plugin files from node_modules to the public/assets/plugins/ directory
+                {
                     src: 'node_modules/feather-icons/dist/**',
                     dest: 'public/assets/plugins/feather-icons',
                 },
@@ -160,5 +163,41 @@ export default defineConfig({
                 },
             ],
         }),
+
+        // Custom BrowserSync setup for live-reloading Blade templates
+        {
+            name: 'browser-sync',
+            configureServer(server) {
+                browserSync({
+                    proxy: 'http://localhost', // Replace with your local Laravel URL if different
+                    files: [
+                        'resources/views/**/*.blade.php', // Watch Blade files for changes
+                        'public/**/*',  // Watch compiled assets for changes
+                    ],
+                    open: false,  // Don't automatically open a new browser window
+                    notify: false, // Disable notifications in the browser
+                });
+
+                server.watcher.on('change', (file) => {
+                    if (file.endsWith('.blade.php')) {
+                        browserSync.reload();  // Trigger a browser refresh for Blade file changes
+                    }
+                });
+            },
+        },
     ],
+
+    // Configure Vite's build and development settings
+    build: {
+        outDir: 'public/build', // Where Vite should output the compiled assets
+        manifest: true,  // Enable manifest file for Laravel to locate assets
+        rollupOptions: {
+            input: path.resolve(__dirname, 'resources/js/app.js'),  // Main JavaScript entry file
+        },
+    },
+
+    // Vite server configuration for local development
+    server: {
+        proxy: 'http://localhost',  // Proxy requests to your Laravel backend during development
+    },
 });
