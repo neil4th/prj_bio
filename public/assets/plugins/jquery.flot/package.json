@@ -8,5 +8,8 @@
 	},
 	"devDependencies": {
 		"jshint": "0.9.1"
+	},
+	"dependencies": {
+		"jquery.flot": "file:"
 	}
 }
