@@ -27,12 +27,7 @@
         </a>
       </li>
 
-      <li class="nav-item {{ active_class(['/position']) }}">
-        <a href="{{ url('/position') }}" class="nav-link">
-          <i class="link-icon" data-feather="calendar"></i>
-          <span class="link-title">Position Entry</span>
-        </a>
-      </li>
+      
       <li class="nav-item {{ active_class(['/pds']) }}">
         <a href="{{ url('/employee') }}" class="nav-link">
           <i class="link-icon" data-feather="file-plus"></i>

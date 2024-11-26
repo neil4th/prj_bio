@@ -1,0 +1,9 @@
+ /* Custom scrollbar styles */
+ .scrollable-cards::-webkit-scrollbar {
+    display: none;
+}
+
+
+#card::-webkit-scrollbar {
+    display: none;
+}

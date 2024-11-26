@@ -1,6 +1,6 @@
 {
     "private": true,
-    "name": "bacacadev",
+    "name": "bacaca_dev",
     "version": "1.0.0",
     "type": "module",
     "scripts": {
@@ -29,6 +29,7 @@
         "ace-builds": "^1.14.0",
         "animate.css": "^4.1.1",
         "apexcharts": "^3.36.3",
+        "bacaca_dev": "file:",
         "bacacadev": "file:",
         "bootstrap": "^5.3.3",
         "bootstrap-maxlength": "^2.0.0",
