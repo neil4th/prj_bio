@@ -1,14 +1,21 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\JobPostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PositionEntry;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\PersonalDataController;
-
+use App\person_data;
 
 Route::get('/', function () {
     return view('bps_biometric');
 });
+
+Route::get('/bps-biometric', function () {
+    return view('dailytimerecord');
+})->name('bps-biometric');
+
 
 
 Route::get('/position', function () {
@@ -18,25 +25,18 @@ Route::get('/position', function () {
 
 // // Handle the form submission
 Route::post('/position', [PositionEntry::class, 'store'])->name('position-store');
-
 Route::get('/person', [PersonalDataController::class, 'getAllpersonalData']);
-
 Route::post('/new_person', [PersonalDataController::class, 'createNewpersonalData'])->name('newFerson');
 
 
 
-Route::get('/bps-biometric', function () {
-    return view('dailytimerecord');
-})->name('bps-biometric');
-
 
 // portal
-Route::get('/My-Portal', function () {
+Route::get('/portal', function () {
     return view('bps_portal');
 })->name('My Portal');
 
 // main routes
-
 Route::get('/portal/admin', function () {
     return view('portal.admin_dashboard');
 });
@@ -56,21 +56,28 @@ Route::get('/portal/accounting', function () {
 
  // ***** Route Group for HRMS System View *****
 Route::group(['prefix' => 'hrms'], function() {
-   
     Route::get('dashboard_hrms', function () { return view('portal.hrms.dashboard_hrms'); })->name('Dashboard-hrms');
-
     // Route for job application page
     Route::get('job-application', function () {return view('portal.hrms.job_application'); })->name('jobApplication');
-
     // Route for job postings page
     Route::get('job-postings', function () {return view('portal.hrms.job_postings'); })->name('jobPosting');
+    // Route for new employee candidate page
 
+    Route::get('employee-candidate', function () {
+        $personaldata = person_data::all();
+        return view('portal.hrms.employee_candidate',compact('personaldata'));})->name('employeeCandidate');
     // Route for new employee page
     Route::get('new-employee', function () {return view('portal.hrms.new_employee');})->name('newEmployee');
-
     // Route for new person page
     Route::get('new-person', function () {return view('portal.hrms.new_person');})->name('newPerson');
+    // Route for auth controller
+    Route::post('/auth/login',  [EmployeeController::class, 'login_hrms'])->name('hrms-auth-login');
+    Route::post('/auth/register',  [EmployeeController::class, 'register_hrms'])->name('hrms-auth-register');
 });
+    
+    // route for jobpost function
+    Route::post('/jobpost',  [JobPostController::class, 'createJobpost'])->name('jobpost');
+
 
 
    // ***** Route Group for Employee System View *****

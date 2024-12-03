@@ -135,7 +135,7 @@
   <script src="{{ asset('assets/js/tags-input.js') }}"></script>
   <script src="{{ asset('assets/js/dropzone.js') }}"></script>
   <script src="{{ asset('assets/js/dropify.js') }}"></script>
-  {{-- <script src="{{ asset('assets/js/pickr.js') }}"></script> --}}
+  <script src="{{ asset('assets/js/pickr.js') }}"></script>
   <script src="{{ asset('assets/js/flatpickr.js') }}"></script>
 
 

@@ -37,9 +37,9 @@
   <script src="{{ asset('assets/js/spinner.js') }}"></script>
 
   <div class="main-wrapper" id="app">
-    @include('layout.sidebar_admin')
+    @include('component.sidebar.admin')
     <div class="page-wrapper">
-      @include('layout.header')
+      @include('portal.admin_dashboard')
       <div class="page-content">
         @yield('content')
       </div>

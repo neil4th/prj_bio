@@ -13,8 +13,8 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Employee</a></li>
-        <li class="breadcrumb-item active" aria-current="page">New Person data</li>
+        <li class="breadcrumb-item"><a href="#">Recruitment</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Personal Data Sheet</li>
     </ol>
 </nav>
 @if(session('success'))
@@ -131,8 +131,6 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="mb-3">
-                                {{-- <a id="more" href="#" onclick="$('.details').slideToggle(function(){$('#more').html($('.details').is(':visible')?'See Less Details':'See More Details');});">See More Details</a> --}}
-
                                 <label for="civil_stat" class="form-label">Civil Status</label>
                                 <select class="form-select" name="civil_status" id="civil_stat"
                                     onchange="toggleDetails(this.value)">

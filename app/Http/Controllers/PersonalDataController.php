@@ -12,7 +12,7 @@ class PersonalDataController extends Controller
     public function getAllpersonalData()
     {
         $personaldata = person_data::all();
-        return response()->json($personaldata);
+        return view('portal.hrms.employee_candidate',compact('personaldata'));
     }
 
       // store a new record of employee
@@ -30,6 +30,7 @@ class PersonalDataController extends Controller
             'email'=> 'nullable', 
             'civil_status'=> 'string', 
             'citizenship'=> 'string', 
+            'religion'=> 'nullable', 
             'height'=> 'nullable', 
             'weight'=> 'nullable', 
             'spouse'=> 'nullable',  
@@ -46,10 +47,11 @@ class PersonalDataController extends Controller
           ]);
           $personaldata = person_data::create($validatedData);
         //   return response()->json($personaldata,201);
-          return redirect()->route('new_person_view')->with('success', 'Personal Data Sheet Saved!');
+          return redirect()->route('newPerson')->with('success', 'Personal Data Sheet Saved!');
       }
     // display the specified resource
     public function getpersonalData(person_data $personaldata) {
+     
         return response()->json($personaldata);
     }
     
@@ -75,6 +77,7 @@ class PersonalDataController extends Controller
     $personaldata->update($validatedData);
     return response()->json($personaldata,200);
 }
+
 // remove the specified employee record from storage; 
 // dev: records should not be deleted or remove, just move to separte tables or mark as inactive for future data referrence.
 // use with caution
@@ -82,4 +85,6 @@ public function removepersonalData(person_data $personaldata) {
  $personaldata->delete();
  return response()->json(null,204);
 }
+
+
 }

@@ -34,7 +34,7 @@
 </head>
 <body data-base-url="{{url('/')}}" >
 
-  {{-- @auth --}}
+  @auth
   <div class="main-wrapper" id="app">
     @include('component.sidebar.hrms')
     <div class="page-wrapper">
@@ -45,9 +45,9 @@
       @include('component.main.footer')
     </div>
   </div>
-  {{-- @else
+  @else
   @include('component.main.hrms.hrms_auth')
-  @endauth --}}
+  @endauth
   
   <script src"{{ asset('assets/js/spinner.js')}}" ></script>
     <!-- base js -->
