@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BiometricController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\JobPostController;
 use Illuminate\Support\Facades\Route;
@@ -77,6 +78,9 @@ Route::group(['prefix' => 'hrms'], function() {
     
     // route for jobpost function
     Route::post('/jobpost',  [JobPostController::class, 'createJobpost'])->name('jobpost');
+    // biometric dtr
+    Route::post('/timein', [BiometricController::class, 'timein'])->name('bio-timein');
+    Route::post('/timeout', [BiometricController::class, 'timeout'])->name('bio-timeout');
 
 
 
