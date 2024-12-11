@@ -16,7 +16,7 @@
 <body class="container">
   <div class="d-flex justify-content-center align-items-center vh-100">
     <div class="text-center">
-      <a href="{{'/portal/admin'}}">
+      <a href="{{route('administrator')}}">
         <button type="button" class="btn btn-outline-primary m-2 "> 
         <i class="link-icon" data-feather="shield" style="height: 20px;"></i>
          <span>Administrator</span>

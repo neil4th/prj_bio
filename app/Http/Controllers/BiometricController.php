@@ -36,4 +36,5 @@ class BiometricController extends Controller
         //   return response()->json($personaldata,201);
           return redirect('/');
       }
+    
 }

@@ -46,7 +46,7 @@
                   <td>{{$pds['id']}}</td>
                   <td>{{$pds['firstname']}} {{$pds['lastname']}}</td>
                   <td>Layout Artist</td>
-                  <td>dili kabalo</td>
+                  <td>Intern</td>
                   <td>
                     <button class="btn btn-outline-primary">Accept</button>
                     <button class="btn btn-outline-danger">Decline</button>
@@ -55,7 +55,7 @@
                 @empty
                 <p>No data available.</p>
                 @endforelse
-@endif
+                @endif
               </tbody>
             </table>
           </div>

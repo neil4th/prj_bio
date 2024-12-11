@@ -12,6 +12,6 @@ class dtr_data extends Model
         "emp_id",
         "day",
         "time",
-        "type"
+        "type",
     ];
 }

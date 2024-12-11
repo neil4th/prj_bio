@@ -38,17 +38,9 @@
             <input id="role" class="form-control" name="role" type="role" placeholder="broader description of what someone does within their job">
           </div>
           <div class="mb-3">
-            <label for="role" class="form-label">Description</label>
-            <textarea id="role" class="form-control"  name="description" cols="30" rows="10" placeholder="Job title
-Job purpose
-Job summary
-Type of employment and location
-Job duties and responsibilities
-Qualifications
-Salary and benefits
-Working hours requirements
-Growth opportunities
-Contact information"></textarea>
+            <label for="description" class="form-label">Description</label>
+            <textarea id="description" class="form-control" name="description" cols="30" rows="10"
+            placeholder="Jobtitle, Job purpose, Job summary, Type of employment and location, Job duties and responsibilities, Qualifications, Salary and benefits, Working hours requirements, Growth opportunities, Contact information" ></textarea>
           </div>
           <button class="btn btn-primary" type="submit">Post Job</button>
         </form>

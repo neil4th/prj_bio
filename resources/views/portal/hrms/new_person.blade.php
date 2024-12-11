@@ -93,13 +93,13 @@
                         </div><!-- Col -->
                         <div class="col-sm-2">
                             <div class="mb-3">
-                                <label class="form-label">Height</label>
+                                <label class="form-label">Height <span class="text-muted">(cm)</span></label>
                                 <input type="text" class="form-control" name="height" placeholder="Enter your Height">
                             </div>
                         </div><!-- Col -->
                         <div class="col-sm-2">
                             <div class="mb-3">
-                                <label class="form-label">Weight</label>
+                                <label class="form-label">Weight <span class="text-muted">(kg)</span></label>
                                 <input type="text" class="form-control" name="weight" placeholder="Enter your Weight">
                             </div>
                         </div><!-- Col -->

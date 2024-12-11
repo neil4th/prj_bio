@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PositionEntry;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\PersonalDataController;
+use App\dtr_data;
 use App\person_data;
 
 Route::get('/', function () {
@@ -40,7 +41,7 @@ Route::get('/portal', function () {
 // main routes
 Route::get('/portal/admin', function () {
     return view('portal.admin_dashboard');
-});
+})->name('administrator');
 
 
 
@@ -53,8 +54,6 @@ Route::get('/portal/accounting', function () {
     return view('portal.admin_accounting');
 });
 
-
-
  // ***** Route Group for HRMS System View *****
 Route::group(['prefix' => 'hrms'], function() {
     Route::get('dashboard_hrms', function () { return view('portal.hrms.dashboard_hrms'); })->name('Dashboard-hrms');
@@ -63,7 +62,6 @@ Route::group(['prefix' => 'hrms'], function() {
     // Route for job postings page
     Route::get('job-postings', function () {return view('portal.hrms.job_postings'); })->name('jobPosting');
     // Route for new employee candidate page
-
     Route::get('employee-candidate', function () {
         $personaldata = person_data::all();
         return view('portal.hrms.employee_candidate',compact('personaldata'));})->name('employeeCandidate');
@@ -89,7 +87,9 @@ Route::group(['prefix' => 'employee'], function() {
     // Route for Dashboard
     Route::get('dashboard', function () {return view('portal.employee.dashboard_emp'); })->name('employeeDashboard');
     // Route for Dtr Page
-    Route::get('dtr', function () {return view('portal.employee.mydtr'); })->name('DTR');
+    Route::get('dtr', function () {
+        $dtrdatas = dtr_data::all();
+        return view('portal.employee.mydtr',compact('dtrdatas')); })->name('DTR');
     // Route for DTR Print Page
     Route::get('Print_dtr', function () {return view('portal.employee.dtr_print'); })->name('print_dtr');
 });

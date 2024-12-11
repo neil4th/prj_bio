@@ -36,68 +36,43 @@
                   </div>
                   </div>
                   <div class="table-responsive">
-                            <table id="dataTableExample" class="table table-bordered table-hover">
-                              <thead>
-                                <tr>
-                                    <th rowspan="2" class="text-center  align-middle" >Day</th>
-                                    <th colspan="2" class="text-center  align-middle">A.M</th>
-                                    <th colspan="2" class="text-center  align-middle">P.M</th>
-                                    <th colspan="2" class="text-center  align-middle">Undertime</th>
-                                </tr>
-                                <tr>
-                                    <th class="text-center  align-middle">Arrival</th>
-                                    <th class="text-center  align-middle">Departure</th>
-                                    <th class="text-center  align-middle">Arrival</th>
-                                    <th class="text-center  align-middle">Departure</th>
-                                    <th class="text-center  align-middle">Arrival</th>
-                                    <th class="text-center  align-middle">Departure</th>
-                                </tr>
-
-
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>1</td>
-                                  <td>07:03</td>
-                                  <td>11:53</td>
-                                  <td>07:03</td>
-                                  <td>11:53</td>
-                                  <td>00:05</td>
-                                  <td>00:05</td>
-                                </tr>
-                                <tr>
-                                  <td>2</td>
-                                  <td>07:03</td>
-                                  <td>11:53</td>
-                                  <td>07:03</td>
-                                  <td>11:53</td>
-                                  <td>00:05</td>
-                                  <td>00:05</td>
-                                </tr>
-                                <tr>
-                                  <td>3</td>
-                                  <td>07:03</td>
-                                  <td>11:53</td>
-                                  <td>07:03</td>
-                                  <td>11:53</td>
-                                  <td>00:05</td>
-                                  <td>00:05</td>
-                                </tr>
-                                <tr>
-                                  <td>4</td>
-                                  <td>07:03</td>
-                                  <td>11:53</td>
-                                  <td>07:03</td>
-                                  <td>11:53</td>
-                                  <td>00:05</td>
-                                  <td>00:05</td>
-                                </tr>
-
-                              </tbody>
-                            </table>
-                          </div>
-
-
+              <table id="dataTableExample" class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                      <th rowspan="2" class="text-center  align-middle" >Day</th>
+                      <th colspan="2" class="text-center  align-middle">A.M</th>
+                      <th colspan="2" class="text-center  align-middle">P.M</th>
+                      <th colspan="2" class="text-center  align-middle">Undertime</th>
+                  </tr>
+                  <tr>
+                      <th class="text-center  align-middle">Arrival</th>
+                      <th class="text-center  align-middle">Departure</th>
+                      <th class="text-center  align-middle">Arrival</th>
+                      <th class="text-center  align-middle">Departure</th>
+                      <th class="text-center  align-middle">Arrival</th>
+                      <th class="text-center  align-middle">Departure</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center  align-middle">
+                  @if($dtrdatas->isNotEmpty())
+                  @forelse($dtrdatas as $dtrs)
+                  <tr>
+                    <td>{{$dtrs['day']}}</td>
+                    <td>{{$dtrs['time']}}</td>
+                    <td>{{$dtrs['time']}}</td>
+                    <td>{{$dtrs['time']}}</td>
+                    <td>{{$dtrs['time']}}</td>
+                    <td>{{$dtrs['time']}}</td>
+                    <td>{{$dtrs['time']}}</td>
+                  </td>
+                  </tr>
+                  @empty
+                  <p>No data available.</p>
+                  @endforelse
+                  @endif
+                </tbody>
+              </table>
+              </div>
               </div><!-- Row -->
             </form>
             <button type="button" class="btn btn-primary submit">Print</button>
@@ -105,6 +80,7 @@
       </div>
     </div>
   </div>
+ 
   @endsection
 
   @push('plugin-scripts')

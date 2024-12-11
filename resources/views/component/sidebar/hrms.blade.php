@@ -1,6 +1,6 @@
 <nav class="sidebar">
   <div class="sidebar-header">
-    <a href="#" class="sidebar-brand">
+    <a href="{{ route('Dashboard-hrms') }}" class="sidebar-brand">
       Bacaca<span class="fs-5">Printshop</span>
     </a>
     <div class="sidebar-toggler not-active">
@@ -11,13 +11,13 @@
   </div>
   <div class="sidebar-body">
     <ul class="nav">
-      <li class="nav-item nav-category">Human Resources Panel</li>
+      {{-- <li class="nav-item nav-category">Human Resources Panel</li>
       <li class="nav-item {{ active_class(route('Dashboard-hrms')) }}">
         <a href="{{ route('Dashboard-hrms') }}" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
           <span class="link-title">Overview</span>
         </a>
-      </li>
+      </li> --}}
       <li class="nav-item nav-category">Recruitment</li>
       <li class="nav-item {{ active_class(route('jobPosting')) }}">
         <a href="{{ route('jobPosting') }}" class="nav-link">
