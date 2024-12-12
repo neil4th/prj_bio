@@ -9,11 +9,11 @@ class APIController extends Controller
 {
     //
     public function getPosition(Request $request){
-        
+
 
         // You can replace this with actual position data from your database or external source
     $position = "API WORKING NOW"; // Replace with actual data if needed
-    
+
     // Return the JSON response
     return response()->json([
         'success' => true,
