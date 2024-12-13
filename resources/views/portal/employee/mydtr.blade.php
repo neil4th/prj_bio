@@ -17,26 +17,33 @@
       <li class="breadcrumb-item active" aria-current="page">My Daily Time Record</li>
     </ol>
   </nav>
-
   <div class="row">
     <div class="col-md-12 stretch-card">
       <div class="card">
         <div class="card-body">
           <h6 class="card-title">Daily Time Record</h6>
-            <form>
+          <form action="{{route('dtr.rangetime') }}" method="POST" >
               <div class="row">
-                <div class="col-sm-4">
-                  <div class="mb-3">
-                    <label class="form-label">Select Date</label>
-                    <div class="input-group flatpickr" id="flatpickr-date-range"  >
+                <div class="col-sm-8">
+                  <div class="mb-3 d-flex align-items-center flex-wrap text-nowrap">
+                    <div class="d-flex gap-2">
+                      <div class="input-group flatpickr" id="flatpickr-date-range"  >
                       <span class="input-group-text input-group-addon" data-toggle><i data-feather="calendar"></i></span>
-                      <input type="text" class="form-control" placeholder="Select date" mode="range" name="dateofbirth" data-input>
-                      <button type="button" class="btn btn-primary submit">Generate DTR</button>
+                        @csrf
+                        <input type="text" class="form-control" placeholder="Select date" id="rangedatepicker" mode="range" name="rangedate" data-input>
+                        
+                        <button id="filterBtn" type="submit" class="btn btn-primary submit">Generate daily time records</button>
+                      </div>
+                    </form>
+                    <button type="button" class="btn btn-outline-primary btn-icon-text me-2 mb-2 mb-md-0">
+                      <i class="btn-icon-prepend" data-feather="printer"></i>
+                      Print
+                    </button>
                     </div>
                   </div>
                   </div>
                   <div class="table-responsive">
-              <table id="dataTableExample" class="table table-bordered table-hover">
+              <table id="dtdate" class="table table-bordered table-hover">
                 <thead>
                   <tr>
                       <th rowspan="2" class="text-center  align-middle" >Day</th>
@@ -49,37 +56,30 @@
                       <th class="text-center  align-middle">Departure</th>
                       <th class="text-center  align-middle">Arrival</th>
                       <th class="text-center  align-middle">Departure</th>
-                      <th class="text-center  align-middle">Arrival</th>
-                      <th class="text-center  align-middle">Departure</th>
+                      <th class="text-center  align-middle">Morning</th>
+                      <th class="text-center  align-middle">Afternoon</th>
                   </tr>
                 </thead>
                 <tbody class="text-center  align-middle">
-                  @if($dtrdatas->isNotEmpty())
-                  @forelse($dtrdatas as $dtrs)
+                  @foreach($records as $record)
                   <tr>
-                    <td>{{$dtrs['day']}}</td>
-                    <td>{{$dtrs['time']}}</td>
-                    <td>{{$dtrs['time']}}</td>
-                    <td>{{$dtrs['time']}}</td>
-                    <td>{{$dtrs['time']}}</td>
-                    <td>{{$dtrs['time']}}</td>
-                    <td>{{$dtrs['time']}}</td>
-                  </td>
+                      <td>{{ $record->day }}</td>
+                      <td>{{ $record['time_in_morning'] }}</td>
+                      <td>{{ $record['time_out_morning']}}</td>
+                      <td>{{ $record['time_in_afternoon'] }}</td>
+                      <td>{{ $record['time_out_afternoon'] }}</td>
+                      <td>{{ $record['undertime_morning'] }} mins</td>
+                      <td>{{ $record['undertime_afternoon'] }} mins</td>
                   </tr>
-                  @empty
-                  <p>No data available.</p>
-                  @endforelse
-                  @endif
+                  @endforeach
                 </tbody>
               </table>
               </div>
               </div><!-- Row -->
             </form>
-            <button type="button" class="btn btn-primary submit">Print</button>
         </div>
       </div>
     </div>
-  </div>
  
   @endsection
 

@@ -40,8 +40,8 @@
                 </tr>
               </thead>
               <tbody class="text-center  align-middle">
-                @if($personaldata->isNotEmpty())
-                @forelse($personaldata as $pds)
+                {{-- @if($personaldata->isNotEmpty()) --}}
+                @foreach($personaldata as $pds)
                 <tr>
                   <td>{{$pds['id']}}</td>
                   <td>{{$pds['firstname']}} {{$pds['lastname']}}</td>
@@ -52,10 +52,8 @@
                     <button class="btn btn-outline-danger">Decline</button>
                   </td>
                 </tr>
-                @empty
-                <p>No data available.</p>
-                @endforelse
-                @endif
+                @endforeach
+                {{-- @endif --}}
               </tbody>
             </table>
           </div>

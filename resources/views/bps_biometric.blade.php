@@ -28,16 +28,7 @@
         const formattedTime = formatter.format(now);
         timeDisplay.textContent = formattedTime;
         clockInput.value = formattedTime
-        clockInputout.value = formattedTime
       }
-
-      const today = new Date();
-      var curr_date = today.getDate();
-      var curr_month = today.getMonth() + 1; //Months are zero based
-      var curr_year = today.getFullYear();
-      dateInput.value = curr_year + "-" + curr_month + "-" +  curr_date ;
-      dateInputout.value = curr_year + "-" + curr_month + "-" +  curr_date ;
-
       // Update the clock every second
       setInterval(updateTime, 1000);
       // Set initial time
@@ -53,26 +44,14 @@
       <div class="text-center">
         <img src="{{ url('assets/images/bacaca_logo.png') }}" height="50px">
         <div class="mb-3">
-          <div style="font-size: 60px; font-weight: bold;" id="realTimeClock" >
+          <div style="font-size: 80px; font-weight: bold;" id="realTimeClock" >
             <!-- The time will be displayed here -->
           </div>
           <div class="d-flex flex-row justify-content-center gap-3 ">
-            <form action="{{route('bio-timein') }}" method="POST">
+           
+            <form action="{{route('dtr.record') }}" method="POST" >
               @csrf
-              <input  hidden name="emp_id" value="bps-2024-00475"  />
-              <input  hidden name="day" id="dateInput" />
-              <input  hidden name="time" id="clockInput" />
-              <input  hidden name="type" value="Time In" />
-            <button type="submit" class=" btn  bg-success p-4 text-white"     data-bs-toggle="modal" data-bs-target="#fingerprintModal"><strong>Time-in</strong></button>
-          </form>
-
-            <form action="{{route('bio-timeout') }}" method="POST" >
-              @csrf
-              <input  hidden name="emp_id" value="bps-2024-00475"  />
-              <input  hidden name="day" id="dateInputout" />
-              <input  hidden name="time" id="clockInputout" />
-              <input  hidden name="type" value="Time Out" />
-            <button type="submit" class=" btn  bg-success p-4 text-xl text-white" w-50 fs-Bold" data-bs-toggle="modal" data-bs-target="#fingerprintModal"><strong>Time-Out</strong></button>
+            <button type="submit" class=" btn  bg-success p-2 text-xl text-white" data-bs-toggle="modal" data-bs-target="#fingerprintModal"><strong>Fingerprint</strong></button>
           </form>
           </div>
           <!-- <select name="type" class="form-select form-select-lg m-2 p-2">

@@ -56,7 +56,7 @@
       <li class="nav-item {{ active_class(['/pds']) }}">
         <a href="{{ route('newEmployee') }}"  class="nav-link">
           <i class="link-icon" data-feather="users"></i>
-          <span class="link-title">Employment</span>
+          <span class="link-title">Designation</span>
         </a>
       </li>
       <li class="nav-item {{ active_class(['/pds']) }}">
