@@ -10,3 +10,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/position', [APIController::class, 'getPosition']);
+
+Route::post('/upload', [APIController::class, 'upload']);
