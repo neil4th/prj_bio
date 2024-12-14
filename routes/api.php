@@ -11,4 +11,4 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/position', [APIController::class, 'getPosition']);
 
-Route::post('/upload', [APIController::class, 'upload']);
+Route::post('/upload', [APIController::class, 'uploadFingerprint']);

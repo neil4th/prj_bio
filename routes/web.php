@@ -73,7 +73,7 @@ Route::group(['prefix' => 'hrms'], function() {
     Route::post('/auth/login',  [EmployeeController::class, 'login_hrms'])->name('hrms-auth-login');
     Route::post('/auth/register',  [EmployeeController::class, 'register_hrms'])->name('hrms-auth-register');
 });
-    
+
     // route for jobpost function
     Route::post('/jobpost',  [JobPostController::class, 'createJobpost'])->name('jobpost');
     // biometric dtr
@@ -95,7 +95,9 @@ Route::group(['prefix' => 'employee'], function() {
 });
 
 
-
+Route::group(['prefix' => 'bio'], function() {
+    Route::get('enroll', function () { return view('bio.enroll'); })->name('BiometricEnrollment');
+});
 
 
 
