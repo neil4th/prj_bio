@@ -106,6 +106,36 @@
               <button type="submit" class="btn btn-primary submit">Assign Employee</input>
             </form>
         </div>
+        {{-- table --}}
+  <div class="table-responsive">
+    <table id="dataTableExample" class="table table-bordered table-hover">
+      <thead>
+        <tr>
+            <th class="text-center  align-middle">ID</th>
+            <th class="text-center  align-middle">Name</th>
+            <th class="text-center  align-middle">Applying for</th>
+            <th class="text-center  align-middle">Remarks</th>
+            <th class="text-center  align-middle">Decision</th>
+        </tr>
+      </thead>
+      <tbody class="text-center  align-middle">
+        {{-- @if($personaldata->isNotEmpty()) --}}
+        @foreach($personaldata as $pds)
+        <tr>
+          <td>{{$pds['id']}}</td>
+          <td>{{$pds['firstname']}} {{$pds['lastname']}}</td>
+          <td>Layout Artist</td>
+          <td>Intern</td>
+          <td>
+            <button class="btn btn-outline-primary">Accept</button>
+            <button class="btn btn-outline-danger">Decline</button>
+          </td>
+        </tr>
+        @endforeach
+        {{-- @endif --}}
+      </tbody>
+    </table>
+  </div>
       </div>
     </div>
   </div>

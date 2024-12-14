@@ -12,7 +12,7 @@ use App\person_data;
 
 Route::get('/', function () {
     return view('bps_biometric');
-});
+})->name('timerecord');
 
 Route::get('/bps-biometric', function () {
     return view('dailytimerecord');
@@ -29,9 +29,6 @@ Route::get('/position', function () {
 Route::post('/position', [PositionEntry::class, 'store'])->name('position-store');
 Route::get('/person', [PersonalDataController::class, 'getAllpersonalData']);
 Route::post('/new_person', [PersonalDataController::class, 'createNewpersonalData'])->name('newFerson');
-
-
-
 
 // portal
 Route::get('/portal', function () {
@@ -66,7 +63,9 @@ Route::group(['prefix' => 'hrms'], function() {
         $personaldata = person_data::all();
         return view('portal.hrms.employee_candidate',compact('personaldata'));})->name('employeeCandidate');
     // Route for new employee page
-    Route::get('new-employee', function () {return view('portal.hrms.new_employee');})->name('newEmployee');
+    Route::get('new-employee', function () {
+        $personaldata = person_data::all();
+        return view('portal.hrms.new_employee',compact('personaldata'));})->name('newEmployee');
     // Route for new person page
     Route::get('new-person', function () {return view('portal.hrms.new_person');})->name('newPerson');
     // Route for auth controller
@@ -77,8 +76,12 @@ Route::group(['prefix' => 'hrms'], function() {
     // route for jobpost function
     Route::post('/jobpost',  [JobPostController::class, 'createJobpost'])->name('jobpost');
     // biometric dtr
-    Route::post('/timein', [BiometricController::class, 'timein'])->name('bio-timein');
-    Route::post('/timeout', [BiometricController::class, 'timeout'])->name('bio-timeout');
+
+    // Route::middleware('auth')->group(function () {
+        Route::post('/dtr/record', [BiometricController::class, 'recordTime'])->name('dtr.record');
+        Route::post('/dtr/range', [BiometricController::class, 'rangetime'])->name('dtr.rangetime');
+    // });
+        Route::post('/dtr/all', [BiometricController::class, 'getAll'])->name('dtr.all');
 
 
 
@@ -88,8 +91,8 @@ Route::group(['prefix' => 'employee'], function() {
     Route::get('dashboard', function () {return view('portal.employee.dashboard_emp'); })->name('employeeDashboard');
     // Route for Dtr Page
     Route::get('dtr', function () {
-        $dtrdatas = dtr_data::all();
-        return view('portal.employee.mydtr',compact('dtrdatas')); })->name('DTR');
+        $records = [];
+        return view('portal.employee.mydtr', compact('records')); })->name('DTR');
     // Route for DTR Print Page
     Route::get('Print_dtr', function () {return view('portal.employee.dtr_print'); })->name('print_dtr');
 });

@@ -17,8 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('emp_id')->nullable();
             $table->date('day');
-            $table->string('time')->nullable();
-            $table->string('type')->nullable();
+            $table->string('time_in_morning')->nullable();
+            $table->string('time_out_morning')->nullable();
+            $table->string('time_in_afternoon')->nullable();
+            $table->string('time_out_afternoon')->nullable();
+            $table->integer('undertime_morning')->nullable(); // in minutes
+            $table->integer('undertime_afternoon')->nullable(); // in minutes
             $table->timestamps();
         });
     }
